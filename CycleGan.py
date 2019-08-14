@@ -16,6 +16,7 @@ import numpy as np
 import os
 import glob
 import imageio
+import os
 
 def img_range(img):
     return ((img+1)*127.5).astype(np.int32)
@@ -114,6 +115,12 @@ class CycleGan():
                 
         return self.gan, self.genXY, self.genYX
     
+    def return_gan(self):
+        return self.gan
+    def return_genXY(self):
+        return self.genXY
+    def return_genYX(self):
+        return self.genYX
     
     def encode(self, input_layer, filters):
         layer = Conv2D(filters, kernel_size=5, strides=2, padding='same')(input_layer)
@@ -240,6 +247,6 @@ class CycleGan():
         ax[0,0].set_title("original")
         ax[0,1].set_title("transform")
         ax[0,2].set_title("reconstructed")
-        
+        os.makedirs( path+"save" , exist_ok=True)
         fig.savefig(path+"save\\epoch=%s.jpg" %epoch)
         plt.show()
