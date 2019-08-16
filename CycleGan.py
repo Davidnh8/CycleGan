@@ -27,13 +27,11 @@ def load_data(pathA, pathB, row_shape, col_shape, batch_size=32):
     # list of file names
     path_imgA=glob.glob(pathA)
     path_imgB=glob.glob(pathB)
-    
     n_images = min(len(path_imgA), len(path_imgB))
     n_batch = int(n_images//batch_size)
     # list of chosen filenames
     chosen_imgA = np.random.choice(path_imgA, n_images, replace=False)
     chosen_imgB = np.random.choice(path_imgB, n_images, replace=False)
-    
     for i in range(n_batch-1):
         imgsA=[]
 
