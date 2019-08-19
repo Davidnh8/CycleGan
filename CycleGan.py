@@ -83,7 +83,7 @@ class CycleGan():
         
         self.build_gan()
         
-    def train(self, epochs=10, batch_size=32, sample_interval=10):
+    def train(self, epochs=10, batch_size=32, sample_interval=10, show_img=True):
         
         real = 0.9 * np.ones((batch_size,)+(self.img_rows//16,self.img_cols//16,1))
         fake = np.zeros((batch_size,)+(self.img_rows//16,self.img_cols//16,1))
@@ -109,7 +109,7 @@ class CycleGan():
                                           imgX, imgY])
             if epoch%sample_interval==0:
                 print(epoch)
-                self.plot_image(epoch, self.path)
+                self.plot_image(epoch, self.path, show_img)
                 
         return self.gan, self.genXY, self.genYX
     
@@ -210,7 +210,7 @@ class CycleGan():
         
         return final_gen_model
     
-    def plot_image(self,epoch, path):
+    def plot_image(self,epoch, path, show_img):
         imgX_random=np.random.choice(glob.glob(path+'trainA\\*.jpg'),1)
         imX=imageio.imread(imgX_random[0])
         imX=scipy.misc.imresize(imX, (self.img_rows,self.img_cols,3))
@@ -235,16 +235,18 @@ class CycleGan():
         fig,ax=plt.subplots(2,3, figsize=[24,16])
         ax[0,0].imshow(img_range(imX))
         ax[1,0].imshow(img_range(imY))
-        
+
         ax[0,1].imshow(img_range(generated_imY))
         ax[1,1].imshow(img_range(generated_imX))
-        
+
         ax[0,2].imshow(img_range(reconstructed_imX))
         ax[1,2].imshow(img_range(reconstructed_imY))
-        
+
         ax[0,0].set_title("original")
         ax[0,1].set_title("transform")
         ax[0,2].set_title("reconstructed")
         os.makedirs( path+"save" , exist_ok=True)
         fig.savefig(path+"save\\epoch=%s.jpg" %epoch)
-        plt.show()
+        
+        if show_img:
+            plt.show()
