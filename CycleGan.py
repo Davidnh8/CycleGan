@@ -64,7 +64,7 @@ class CycleGan():
         self.img_cols=img_cols
         self.channels=img_channels
         self.img_shape=(self.img_rows, self.img_cols, self.channels)
-        
+        self.cycle_lambda=cycle_lambda
         
         
         # build discriminator and generator
@@ -108,9 +108,11 @@ class CycleGan():
                                       imgX, imgY,
                                           imgX, imgY])
             if epoch%sample_interval==0:
-                print(epoch)
+                print("epochs: ",epoch)
+                os.makedirs( self.path+"models" , exist_ok=True)
+                self.genXY.save_weights(self.path + "\\models\\JapanesemodelgenXY_%s_%s_%s"  %(str(epoch), str(batch_size), str(self.cycle_lambda)))
+                self.genYX.save_weights(self.path + "\\models\\JapanesemodelgenYX_%s_%s_%s"  %(str(epoch), str(batch_size), str(self.cycle_lambda)))
                 self.plot_image(epoch, self.path, show_img)
-                
         return self.gan, self.genXY, self.genYX
     
     def return_gan(self):
@@ -210,7 +212,7 @@ class CycleGan():
         
         return final_gen_model
     
-    def plot_image(self,epoch, path, show_img):
+    def plot_image(self,epoch, path, show_img=False):
         imgX_random=np.random.choice(glob.glob(path+'trainA\\*.jpg'),1)
         imX=imageio.imread(imgX_random[0])
         imX=scipy.misc.imresize(imX, (self.img_rows,self.img_cols,3))
