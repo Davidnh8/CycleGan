@@ -30,9 +30,9 @@ class ImageProcessing():
             source_img_G_center= np.median(source_img[:,:,1])
             source_img_B_center= np.median(source_img[:,:,2])
         elif mode=='mean':
-            source_img_R_center= np.mean(source_img_R)
-            source_img_G_center= np.mean(source_img_G)
-            source_img_B_center= np.mean(source_img_B)
+            source_img_R_center= np.mean(source_img[:,:,0])
+            source_img_G_center= np.mean(source_img[:,:,1])
+            source_img_B_center= np.mean(source_img[:,:,2])
         else:
             raise ValueError("This should not occur. Check Code")
         

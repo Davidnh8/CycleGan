@@ -79,7 +79,7 @@ class CycleGan():
         
         # weights
         self.cycle_lambda = cycle_lambda
-        self.id_lambda = 0.5 * self.cycle_lambda
+        self.id_lambda = 0.8 * self.cycle_lambda
         
         self.build_gan()
         
@@ -110,8 +110,8 @@ class CycleGan():
             if epoch%sample_interval==0:
                 print("epochs: ",epoch)
                 os.makedirs( self.path+"models" , exist_ok=True)
-                self.genXY.save_weights(self.path + "\\models\\JapanesemodelgenXY_%s_%s_%s"  %(str(epoch), str(batch_size), str(self.cycle_lambda)))
-                self.genYX.save_weights(self.path + "\\models\\JapanesemodelgenYX_%s_%s_%s"  %(str(epoch), str(batch_size), str(self.cycle_lambda)))
+                self.genXY.save_weights(self.path + "\\models\\JapanesemodelgenXY_%s_%s_%s_%s"  %(str(epoch), str(batch_size), str(self.cycle_lambda), str(self.id_lambda)))
+                self.genYX.save_weights(self.path + "\\models\\JapanesemodelgenYX_%s_%s_%s_%s"  %(str(epoch), str(batch_size), str(self.cycle_lambda), str(self.id_lambda)))
                 self.plot_image(epoch, self.path, show_img)
         return self.gan, self.genXY, self.genYX
     
