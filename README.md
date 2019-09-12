@@ -3,7 +3,7 @@
 This project provides a complete tool to use CycleGan, a method for image-to-image transformation without a need for paired dataset. 
 Here I primarily use it to accomplish image-to-image transformation, specifically, between google satellite images and pre-1920 Japanese Arts.
 
-To generate the following images, I webscraped about 2500 Japanese art pieces from the Library of Congress (https://www.loc.gov/collections/?fa=subject:art+%26+architecture) and the satellite maps from google.
+To generate the following images, I webscraped about 2500 Japanese art pieces from the Library of Congress (https://www.loc.gov/collections/?fa=subject:art+%26+architecture) and the satellite maps from google.  
 10 ~ 40 epoch seems to generate the best images, with Cycleloss of 10 ~ 12.5
 
 Google Satellite | Pre-1920 Japanese Art Style
