@@ -1,10 +1,10 @@
 # CycleGan: Image-to-Image transformation for unpaired dataset
 
-This project provides a complete tool to use CycleGan, a method for image-to-image transformation without a need for paired dataset. 
+This project provides a complete tool to use CycleGan, a version of GAN that excels at image-to-image transformation without a need for paired dataset. 
 Here I primarily use it to accomplish image-to-image transformation between google satellite images and pre-1915 Japanese Arts.
 
-To generate the following images, I webscraped about 2500 Japanese art pieces from the Library of Congress (https://www.loc.gov/collections/?fa=subject:art+%26+architecture) and the satellite maps from google.  
-10 ~ 40 epoch seems to generate the best images, with Cycleloss of 10 ~ 12.5
+To generate the following images, I webscraped about 2,500 Japanese art pieces from the Library of Congress (https://www.loc.gov/collections/?fa=subject:art+%26+architecture) and about 1,000 satellite map images from google.  
+10 ~ 40 epoch seems to generate the best images, with Cycleloss factor of 10 ~ 12.5. Due to VRAM constraint, my batch size was limited to 1.
 
 Google Satellite | Pre-1920 Japanese Art Style
 ----------- | ------------
